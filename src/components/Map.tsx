@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Company } from '../types';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
+import { useEffect, useRef } from 'react';
 
 // Fix for default marker icon
 const defaultIcon = new Icon({
@@ -12,32 +13,38 @@ const defaultIcon = new Icon({
   iconAnchor: [12, 41],
 });
 
+const selectedIcon = new Icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [30, 46],
+  iconAnchor: [15, 46],
+});
+
 interface MapProps {
   companies: Company[];
   selectedCompany: Company | null;
 }
 
-// 1. Création d'un composant de Marker qui se recentre sur le clic
-function MarkerWithRecenter({ company }: { company: Company }) {
+function MarkerWithPopup({ company, selectedCompany }: { company: Company, selectedCompany: Company | null }) {
   const map = useMap();
+  const markerRef = useRef<L.Marker>(null);
 
-  // 2. Fonction de recentrage sur le marker cliqué
-  const handleMarkerClick = () => {
-    // Zoom inchangé, mais vous pouvez le modifier
-    // Vous pouvez aussi utiliser map.flyTo(...) pour un effet différent
-    map.flyTo([company.location.lat, company.location.lng], 16, {
-      animate: true,
-    });
-  };
+  useEffect(() => {
+    if (selectedCompany?.id === company.id) {
+      map.flyTo(
+        [company.location.lat, company.location.lng],
+        16,
+        { animate: true }
+      );
+      markerRef.current?.openPopup();
+    }
+  }, [selectedCompany, company, map]);
 
   return (
     <Marker
+      ref={markerRef}
       position={[company.location.lat, company.location.lng]}
-      icon={defaultIcon}
-      // 3. Event handler du clic sur le marker
-      eventHandlers={{
-        click: handleMarkerClick,
-      }}
+      icon={company.id === selectedCompany?.id ? selectedIcon : defaultIcon}
     >
       <Popup offset={[0, -20]}>
         <div className="p-2">
@@ -58,13 +65,15 @@ export default function Map({ companies, selectedCompany }: MapProps) {
       className="w-full h-full rounded-lg"
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">
-          OpenStreetMap
-        </a> contributors'
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {companies.map((company) => (
-        <MarkerWithRecenter key={company.id} company={company} />
+        <MarkerWithPopup 
+          key={company.id} 
+          company={company} 
+          selectedCompany={selectedCompany}
+        />
       ))}
     </MapContainer>
   );

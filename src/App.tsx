@@ -5,9 +5,13 @@ import CompanyList from './components/CompanyList';
 import { Company } from './types';
 import { useCompanies } from './hooks/useCompanies';
 
+
+
 function App() {
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const { companies, loading, error } = useCompanies();
+
+  
 
   if (error) {
     return (
