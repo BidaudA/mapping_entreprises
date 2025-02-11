@@ -1,0 +1,40 @@
+﻿Id;Entreprise;Secteur;Adresse;Latitude;Longitude;Technologies_Backend;Technologies_Frontend;Technologies_Cloud_Data;Types_Postes
+1;Betclic;Paris sportifs en ligne;117 Quai de Bacalan, 33300 Bordeaux;44.863490;-0.550709;.NET Core, Node.js;React, TypeScript;AWS;CDI
+2;Cdiscount;E-commerce;120-126 Quai de Bacalan, 33300 Bordeaux;44.856867;-0.560925;Java, Python;React, Angular;GCP, Azure, Hadoop, Spark;CDI, Alternance, Stage
+3;Lectra;Solutions industrie textile;23 Chemin de Marticot, 33610 Cestas;44.750917;-0.687882;Java, C++;Angular;Azure;CDI, Stage
+4;OVHcloud;Cloud computing;BASSINS A FLOT N 1 BAT G 4 QUAI LAWTON 33300 BORDEAUX;44.86400404503241;-0.5598022599682128;Go, Python;-;Kubernetes, OpenStack;CDI, Stage
+5;Ubisoft;Jeux vidéo;15 Avenue Abadie, 33100 Bordeaux;44.837790;-0.563880;C++, C#;Unreal Engine, Unity;-;CDI, Stage
+6;Deezer;Streaming musical;20 Rue Saint-François, 33000 Bordeaux;44.83447152479271;-0.568506377354394;PHP, Python;React;Spark, Kafka;CDI
+9;Backmarket;E-commerce reconditionné;12 Rue Bouquière, 33000 Bordeaux;44.836769;-0.571077;Python, Django;React;PostgreSQL, Elasticsearch;CDI
+10;AT Internet;Analytics web;85-87 Rue du Jardin Public, 33000 Bordeaux;44.853379;-0.574915;Java, Scala;React;Hadoop, Spark;CDI, Stage
+11;Azendoo;Collaboration d'équipe;4 Rue Vauban, 33000 Bordeaux;44.847486;-0.573929;Ruby on Rails;React;-;CDI
+12;Synapse Medicine;Santé / IA;6 Place Henri Dunant, 33000 Bordeaux;44.832900;-0.589700;Python, FastAPI;React;PyTorch, scikit-learn;CDI
+13;iTerminals;Solutions portuaires;1 Rue Jean Claudeville, 33520 Bruges;44.873852;-0.577420;Java, Spring Boot;Angular;-;CDI, Stage
+14;Treefrog;IA / Computer Vision;11 Rue Margaux, 33000 Bordeaux;44.840244;-0.575508;Python, FastAPI;-;AWS, PyTorch, OpenCV;CDI, Stage
+15;Proxidoc;Santé / Télémédecine;11 Avenue Léonard de Vinci, 33600 Pessac;44.781827;-0.656436;Python, Django;React;-;CDI
+16;NamR;Data Intelligence / Environnement;25 Rue Sainte-Colombe, 33000 Bordeaux;44.837399;-0.570670;Python, PySpark;-;GCP, scikit-learn, TensorFlow;CDI, Stage
+17;Swile;Fintech / Avantages salariés;2 Place de la Bourse, 33000 Bordeaux;44.840934;-0.570275;Ruby on Rails, Elixir;React;-;CDI
+18;Findness/Captec;Solutions retail / IoT;3 Rue Pierre et Marie Curie, 33520 Bruges;44.872837;-0.582787;Java, Spring Boot;Vue.js;-;CDI
+19;Green-Got;Fintech / Néobanque verte;9 Rue de Condé, 33000 Bordeaux;44.843604;-0.573415;Kotlin, Spring Boot;React Native;AWS;CDI, Stage
+20;Immersive Factory;VR / Formation professionnelle;34 Allée d'Orléans, 33000 Bordeaux;44.842800;-0.572500;Unity, C#, Node.js;-;Azure;CDI, Stage
+21;Woebot Health;Santé mentale / IA;14 Cours de l'Intendance, 33000 Bordeaux;44.841858;-0.575873;Python, FastAPI;-;AWS, PyTorch, Transformers;CDI
+22;Dydu;IA / Chatbots;12 Place de la Bourse, 33000 Bordeaux;44.841636;-0.570668;Python, Java;-;AWS, spaCy, BERT;CDI, Stage
+23;Fieldbox.ai;IA Industrielle;213 Cours Victor Hugo, 33130 Bègles;44.806587;-0.559765;Python, Go;-;Azure, Spark, Kafka;CDI, Stage
+24;Lucca;SaaS RH;5 Place Jean Jaurès, 33000 Bordeaux;44.843077;-0.571096;.NET Core;Angular;Azure;CDI
+25;MyCarSpot;Solutions de parking intelligent;14 Avenue Pey Berland, 33600 Pessac;44.800814;-0.611968;Node.js;React Native;-;CDI
+26;Metigate;Cybersécurité;1 Place des Quinconces, 33000 Bordeaux;44.844508;-0.574965;Python, FastAPI;Vue.js;AWS;CDI, Stage
+27;Heetchlabs;Mobilité;28 Cours du Chapeau Rouge, 33000 Bordeaux;44.842192;-0.572374;Elixir, Ruby;React;-;CDI
+28;Seekoya;Marketing digital / IA;23 Parvis des Chartrons, 33000 Bordeaux;44.850202;-0.571364;Python, FastAPI;React;TensorFlow;CDI
+29;Wiidii;IA / Assistant personnel;8 Place des Quinconces, 33000 Bordeaux;44.845002;-0.575985;Python, Node.js;-;spaCy, BERT;CDI, Stage
+30;Evolution;Jeux en ligne;17 Place de la Bourse, 33000 Bordeaux;44.841843;-0.570665;Java, Kotlin;React;AWS;CDI
+31;Dokineo;Logiciel médical;5 Allée de Tourny, 33000 Bordeaux;44.844500;-0.574200;PHP, Symfony;Vue.js;-;CDI
+32;Hermès;Luxe / Maroquinerie;20 Rue de Blanquefort, 33000 Bordeaux;44.852757;-0.581902;Java, Spring Boot;Angular;SAP;CDI
+33;Thales;Aéronautique / Défense;19 Avenue Léonard de Vinci, 33600 Pessac;44.782743;-0.655855;Java, C++;-;AWS, Azure;CDI, Stage
+34;Safran;Aéronautique;61 Chemin de la Houillère, 33560 Carbon-Blanc;44.891400;-0.530300;Java, C++;-;MATLAB, TensorFlow;CDI, Stage
+35;Dassault Aviation;Aéronautique;13 Rue Paul Dukas, 33700 Mérignac;44.826502;-0.667149;Java, C++;-;MATLAB, CATIA;CDI, Stage
+36;Bordeaux Métropole;Administration publique;Esplanade Charles-de-Gaulle, 33000 Bordeaux;44.837392;-0.584865;Java, PHP;Angular;PostGIS;CDI
+37;CHU de Bordeaux;Santé;Place Amélie Raba-Léon, 33000 Bordeaux;44.830324;-0.603273;Java, .NET;-;Oracle, Tableau;CDI
+38;Groupe CDiscount (Energie);Énergie / Services;120 Quai de Bacalan, 33300 Bordeaux;44.860747;-0.552792;Java, Python;React;AWS;CDI
+39;Crédit Agricole;Banque;1 Place Ravezies, 33000 Bordeaux;44.865361;-0.575443;Java, .NET;Angular;Hadoop;CDI, Stage
+40;Caisse d'Épargne;Banque;61 Cours du Chapeau Rouge, 33000 Bordeaux;44.842243;-0.572409;Java, Spring;React;Power BI;CDI, Stage
+41;Decathlon;Distribution sportive;57 Rue du Château d'Eau, 33000 Bordeaux;44.839037;-0.583163;Python, Node.js;React;-;CDI
