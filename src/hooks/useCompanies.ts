@@ -16,6 +16,7 @@ export function useCompanies() {
         Papa.parse(csvText, {
           header: true,
           delimiter: ';',
+          skipEmptyLines: true,
           complete: (results) => {
             const parsedCompanies = results.data
               .filter((row: any) => row.Id) // Filtrer les lignes invalides
