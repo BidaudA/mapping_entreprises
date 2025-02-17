@@ -1,0 +1,24 @@
+Id;name;domain;adress;Latitude;Longitude;Technologies_Backend;Technologies_Frontend;Technologies_Cloud_Data;Types_Postes
+1;Betclic;Paris sportifs en ligne;117 Quai de Bacalan, 33300 Bordeaux;44.863490;-0.550709;.NET Core, Node.js;React, TypeScript;AWS;CDI
+2;Cdiscount;E-commerce;120-126 Quai de Bacalan, 33300 Bordeaux;44.856867;-0.560925;Java, Python;React, Angular;GCP, Azure, Hadoop, Spark;CDI, Alternance, Stage
+3;Lectra;Solutions industrie textile;23 Chemin de Marticot, 33610 Cestas;44.750917;-0.687882;Java, C++;Angular;Azure;CDI, Stage
+4;OVHcloud;Cloud computing;BASSINS A FLOT N 1 BAT G 4 QUAI LAWTON 33300 BORDEAUX;44.86400404503241;-0.5598022599682128;Go, Python;-;Kubernetes, OpenStack;CDI, Stage
+5;Ubisoft;Jeux vidéo;15 Avenue Abadie, 33100 Bordeaux;44.837790;-0.563880;C++, C#;Unreal Engine, Unity;-;CDI, Stage
+6;Deezer;Streaming musical;20 Rue Saint-François, 33000 Bordeaux;44.83447152479271;-0.568506377354394;PHP, Python;React;Spark, Kafka;CDI
+9;Backmarket;E-commerce reconditionné;12 Rue Bouquière, 33000 Bordeaux;44.836769;-0.571077;Python, Django;React;PostgreSQL, Elasticsearch;CDI
+10;AT Internet;Analytics web;85 Av. John Fitzgerald Kennedy, 33700 Mérignac;44.83603977926842;-0.6851924050541003;Java, Scala;React;Hadoop, Spark;CDI, Stage
+12;Synapse Medicine;Santé / IA;17 Rue Vauban, 33000 Bordeaux;44.848320857976084;-0.5742509409969186;Python, FastAPI;React;PyTorch, scikit-learn;CDI
+14;Treefrog;IA / Computer Vision;30 Av. Gustave Eiffel Bâtiment A, 33600 Pessac;44.780713048902896;-0.6528794033128216;Python, FastAPI;-;AWS, PyTorch, OpenCV;CDI, Stage
+22;Dydu;IA / Chatbots;1 Pl. Lainé, 33000 Bordeaux;44.84850904351653;-0.571256431006437;Python, Java;-;AWS, spaCy, BERT;CDI, Stage
+23;Fieldbox.ai;IA Industrielle;Quai Armand Lalande, 33300 Bordeaux;44.86327522798536;-0.5554891747393104;Python, Go;-;Azure, Spark, Kafka;CDI, Stage
+24;Lucca;SaaS RH;5 Place Jean Jaurès, 33000 Bordeaux;44.843077;-0.571096;.NET Core;Angular;Azure;CDI
+29;Wiidii;IA / Assistant personnel;208 Quai de Paludate, 33800 Bordeaux;44.82640226945115;-0.5487147021913998;Python, Node.js;-;spaCy, BERT;CDI, Stage
+32;Hermès;Luxe / Maroquinerie;20 Rue de Blanquefort, 33000 Bordeaux;44.852757;-0.581902;Java, Spring Boot;Angular;SAP;CDI
+33;Thales;Aéronautique / Défense;75-77 Av. Marcel Dassault, 33700 Mérignac;44.84979738584846;-0.7013786640067773;Java, C++;-;AWS, Azure;CDI, Stage
+34;Safran;Aéronautique;12 Quai des Queyries, 33100 Bordeaux;44.84246893830646;-0.5631879834309658;Java, C++;-;MATLAB, TensorFlow;CDI, Stage
+35;Dassault Aviation;Aéronautique;54 Av. Marcel Dassault, 33700 Mérignac;44.84708879824108;-0.6932481281393025;Java, C++;-;MATLAB, CATIA;CDI, Stage
+36;Bordeaux Métropole;Administration publique;Cedex Esplanade Charles-de-Gaulle, 33045 Bordeaux;44.83662780744344;-0.5854697368957901;Java, PHP;Angular;PostGIS;CDI
+37;CHU de Bordeaux;Santé;Pl. Amélie Raba Léon, 33000 Bordeaux;44.82761181631253;-0.6045065650054618;Java, .NET;-;Oracle, Tableau;CDI
+38;Groupe CDiscount Energie;Énergie / Services;120 Quai de Bacalan, 33300 Bordeaux;44.860747;-0.552792;Java, Python;React;AWS;CDI
+39;Crédit Agricole;Banque;106 Quai de Bacalan, 33300 Bordeaux;44.86149544820122;-0.5523569107283983;Java, .NET;Angular;Hadoop;CDI, Stage
+40;Caisse d'Épargne;Banque;1 Parvis Corto Maltese, 33800 Bordeaux;44.827909810249785;-0.5506270351958147;Java, Spring;React;Power BI;CDI, Stage
