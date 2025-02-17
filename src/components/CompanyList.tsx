@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Company } from '../types';
-import { Building2, Code2, Cloud, Database, Briefcase, ChevronDown, ChevronUp, SlidersHorizontal } from 'lucide-react';
+import { Building2, Code2, Cloud, Database, Briefcase, SlidersHorizontal } from 'lucide-react';
 
 interface CompanyListProps {
   companies: Company[];

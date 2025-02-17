@@ -19,6 +19,6 @@ Id;name;domain;adress;Latitude;Longitude;Technologies_Backend;Technologies_Front
 35;Dassault Aviation;Aéronautique;54 Av. Marcel Dassault, 33700 Mérignac;44.84708879824108;-0.6932481281393025;Java, C++;-;MATLAB, CATIA;CDI, Stage
 36;Bordeaux Métropole;Administration publique;Cedex Esplanade Charles-de-Gaulle, 33045 Bordeaux;44.83662780744344;-0.5854697368957901;Java, PHP;Angular;PostGIS;CDI
 37;CHU de Bordeaux;Santé;Pl. Amélie Raba Léon, 33000 Bordeaux;44.82761181631253;-0.6045065650054618;Java, .NET;-;Oracle, Tableau;CDI
-38;Groupe CDiscount Energie;Énergie / Services;120 Quai de Bacalan, 33300 Bordeaux;44.860747;-0.552792;Java, Python;React;AWS;CDI
+38;Groupe CDiscount (Energie);Énergie / Services;120 Quai de Bacalan, 33300 Bordeaux;44.860747;-0.552792;Java, Python;React;AWS;CDI
 39;Crédit Agricole;Banque;106 Quai de Bacalan, 33300 Bordeaux;44.86149544820122;-0.5523569107283983;Java, .NET;Angular;Hadoop;CDI, Stage
 40;Caisse d'Épargne;Banque;1 Parvis Corto Maltese, 33800 Bordeaux;44.827909810249785;-0.5506270351958147;Java, Spring;React;Power BI;CDI, Stage
