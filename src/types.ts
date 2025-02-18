@@ -10,5 +10,17 @@ export interface Company {
     lat: number;
     lng: number;
   };
-  address: string;
+  adress: string;
+}
+
+export interface Technology {
+  id: string;
+  name: string;
+  type: string;
+}
+
+export interface AvailableTechnologies {
+  backend: Technology[];
+  frontend: Technology[];
+  cloud: Technology[];
 }

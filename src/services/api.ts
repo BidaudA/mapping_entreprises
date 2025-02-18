@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Company } from '../types';
+import { Company, Technology } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
@@ -27,3 +27,33 @@ export const companiesApi = {
     await api.delete(`/companies/${id}`);
   },
 };
+
+export const technologiesApi = {
+  getAll: async () => {
+    const response = await api.get<Technology[]>('/technologies');
+    return response.data;
+  },
+
+  create: async (technology: string) => {
+    const response = await api.post<string>('/technologies', { technology });
+    return response.data;
+  },
+
+  delete: async (technology: string) => {
+    await api.delete(`/technologies/${technology}`);
+  },
+
+  update: async (oldTechnology: string, newTechnology: string) => {
+    await api.put(`/technologies/${oldTechnology}`, { technology: newTechnology });
+  },
+
+  deleteAll: async () => {
+    await api.delete('/technologies');
+  },
+
+
+  getByType: async (type: string) => {
+    const response = await api.get<string[]>(`/technologies/${type}`);
+    return response.data;
+  },
+}

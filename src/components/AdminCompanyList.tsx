@@ -37,7 +37,7 @@ export default function AdminCompanyList({ companies, onRefresh }: AdminCompanyL
                 <div className="text-sm text-gray-500">{company.description}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{company.address}</div>
+                <div className="text-sm text-gray-900">{company.adress}</div>
               </td>
               <td className="px-6 py-4">
                 <div className="flex flex-wrap gap-1">

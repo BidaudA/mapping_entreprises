@@ -1,9 +1,12 @@
 import { Plus, Loader2 } from 'lucide-react';
 import { useCompanies } from '../hooks/useCompanies';
 import AdminCompanyList from '../components/AdminCompanyList.tsx';
+import AdminMenu from '../components/AdminMenu.tsx';
+import { useState } from 'react';
 
 export default function AdminPage() {
   const { companies, loading, error, refetch } = useCompanies();
+  const [isAddingCompany, setIsAddingCompany] = useState(false);
 
   if (error) {
     return (
@@ -33,7 +36,7 @@ export default function AdminPage() {
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Administration des entreprises</h1>
           <button
-            onClick={() => {}} // Sera géré par AdminCompanyList
+            onClick={() => setIsAddingCompany(true)} // Sera géré par AdminCompanyList
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-5 h-5" />
@@ -41,6 +44,16 @@ export default function AdminPage() {
           </button>
         </div>
         <AdminCompanyList companies={companies} onRefresh={refetch}/>
+        {/* Modal d'ajout d'entreprise */}
+        {isAddingCompany && (
+          <AdminMenu
+            company={null}
+            onUpdate={async () => {
+              await refetch();
+              setIsAddingCompany(false);
+            }}
+          />
+        )}
       </div>
     </main>
   );

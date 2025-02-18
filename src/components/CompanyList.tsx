@@ -121,7 +121,7 @@ export default function CompanyList({ companies, onSelectCompany }: CompanyListP
           >
             <h3 className="font-bold text-lg">{company.name}</h3>
             <p className="text-gray-600 text-sm mb-2">{company.description}</p>
-            <p className="text-gray-500 text-sm mb-3">{company.address}</p>
+            <p className="text-gray-500 text-sm mb-3">{company.adress}</p>
             
             {company.types_postes.length > 0 && (
               <div className="mb-3">

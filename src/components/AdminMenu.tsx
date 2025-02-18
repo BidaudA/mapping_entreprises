@@ -1,28 +1,63 @@
-import { useState, useCallback } from 'react';
-import { Settings, Plus, Edit, Trash2, Database, Code2, Cloud, Loader2 } from 'lucide-react';
+import { useState, useCallback, useEffect } from 'react';
+import { Settings, Edit, Trash2, Database, Code2, Cloud, Loader2 } from 'lucide-react';
 import { Company } from '../types';
-import { companiesApi } from '../services/api';
+import { companiesApi, technologiesApi } from '../services/api';
 
 interface AdminMenuProps {
   company: Company | null;
   onUpdate: () => Promise<void>;
 }
 
-const availableTechnologies = {
-  backend: ['Node.js', 'Python', 'Java', 'PHP', 'Ruby', 'Go', 'C#', '.NET'],
-  frontend: ['React', 'Vue.js', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js'],
-  cloud: ['AWS', 'Azure', 'GCP', 'Heroku', 'DigitalOcean', 'Vercel']
-};
+interface Technology {
+  id: string;
+  name: string;
+  type: string;
+}
+
+interface AvailableTechnologies {
+  Backend: Technology[];
+  Frontend: Technology[];
+  Cloud: Technology[];
+}
 
 export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(company === null);
   const [isSaving, setIsSaving] = useState(false);
+  const [availableTechnologies, setAvailableTechnologies] = useState<AvailableTechnologies>({
+    Backend: [],
+    Frontend: [],
+    Cloud: []
+  });
   const [formData, setFormData] = useState<Partial<Company>>(company || {
     technologies_back: [],
     technologies_front: [],
     technologies_cloud: []
   });
+
+  // Fetch available technologies
+  useEffect(() => {
+    const fetchTechnologies = async () => {
+      try {
+        const technologies = await technologiesApi.getAll();
+        const grouped: AvailableTechnologies = {
+          Backend: [],
+          Frontend: [],
+          Cloud: []
+        };
+
+        technologies.forEach((tech: Technology) => {
+          grouped[tech.type as keyof AvailableTechnologies].push(tech);
+        });
+        
+        setAvailableTechnologies(grouped);
+      } catch (error) {
+        console.error('Error fetching technologies:', error);
+      }
+    };
+
+    fetchTechnologies();
+  }, []);
 
   const handleDelete = async () => {
     if (!company) return;
@@ -50,14 +85,15 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
       const dataToSend = {
         name: formData.name,
         description: formData.description,
-        address: formData.address,
+        adress: formData.adress,
         latitude: formData.location?.lat,
         longitude: formData.location?.lng,
         technologies_back: formData.technologies_back || [],
         technologies_front: formData.technologies_front || [],
-        technologies_cloud: formData.technologies_cloud || [],
+        technologies_cloud: formData.technologies_cloud || []
+        
       };
-      console.log(dataToSend);
+
       if (company) {
         await companiesApi.update(company.id, dataToSend);
       } else {
@@ -75,11 +111,11 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
     }
   };
 
-  const handleTechnologyChange = useCallback((type: 'backend' | 'frontend' | 'cloud', tech: string) => {
+  const handleTechnologyChange = useCallback((type: 'Backend' | 'Frontend' | 'Cloud', techId: string) => {
     const techTypeMap = {
-      backend: 'technologies_back',
-      frontend: 'technologies_front',
-      cloud: 'technologies_cloud'
+      Backend: 'technologies_back',
+      Frontend: 'technologies_front',
+      Cloud: 'technologies_cloud'
     } as const;
 
     const key = techTypeMap[type];
@@ -87,27 +123,35 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
     
     setFormData(prev => ({
       ...prev,
-      [key]: currentTechs.includes(tech)
-        ? currentTechs.filter(t => t !== tech)
-        : [...currentTechs, tech]
+      [key]: currentTechs.includes(techId)
+        ? currentTechs.filter(t => t !== techId)
+        : [...currentTechs, techId]
     }));
   }, [formData]);
 
   const initializeFormData = useCallback(() => {
     if (company) {
-      // Si on modifie une entreprise existante, on initialise avec toutes ses données
       setFormData({
         name: company.name,
         description: company.description,
-        address: company.address,
+        adress: company.adress,
         location: company.location,
-        technologies_back: [...company.technologies_back],
-        technologies_front: [...company.technologies_front],
-        technologies_cloud: [...company.technologies_cloud],
+        technologies_back: company.technologies_back.map(tech => 
+          typeof tech === 'string' ? tech : ''
+        ),
+        technologies_front: company.technologies_front.map(tech => 
+          typeof tech === 'string' ? tech : ''
+        ),
+        technologies_cloud: company.technologies_cloud.map(tech => 
+          typeof tech === 'string' ? tech : ''
+        ),
       });
     } else {
-      // Si c'est une nouvelle entreprise, on initialise avec des tableaux vides
       setFormData({
+        name: '',
+        description: '',
+        adress: '',
+        location: { lat: 44.837789, lng: -0.579180 }, // Coordonnées par défaut pour Bordeaux
         technologies_back: [],
         technologies_front: [],
         technologies_cloud: []
@@ -115,17 +159,23 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
     }
   }, [company]);
 
+  useEffect(() => {
+    initializeFormData();
+  }, [initializeFormData]);
+
   return (
     <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-        disabled={isSaving}
-      >
-        <Settings className="w-5 h-5 text-gray-600" />
-      </button>
+      {company && (
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          disabled={isSaving}
+        >
+          <Settings className="w-5 h-5 text-gray-600" />
+        </button>
+      )}
 
-      {isOpen && (
+      {isOpen && company && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50 py-2">
           <button
             onClick={() => {
@@ -192,8 +242,8 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                 </label>
                 <input
                   type="text"
-                  value={formData.address || ''}
-                  onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
+                  value={formData.adress || ''}
+                  onChange={(e) => setFormData(prev => ({ ...prev, adress: e.target.value }))}
                   className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300"
                   placeholder="Adresse complète"
                   disabled={isSaving}
@@ -212,7 +262,7 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                         location: { ...prev.location, lat: parseFloat(e.target.value), lng: prev.location?.lng ?? 0 }
                     }))}
                     className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300"
-                    disabled={isSaving}
+                    
                   />
                 </div>
                 <div className='space-y-2'>
@@ -225,8 +275,7 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                       ...prev,
                       location: { ...prev.location, lng: parseFloat(e.target.value), lat: prev.location?.lat ?? 0 }
                     }))}
-                    className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300"
-                    disabled={isSaving} />
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300" />
                 </div>
               </div>
 
@@ -239,19 +288,19 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                     Technologies Backend
                   </label>
                   <div className="flex flex-wrap gap-2">
-                    {availableTechnologies.backend.map(tech => (
+                    {availableTechnologies.Backend.map(tech => (
                       <button
-                        key={tech}
+                        key={tech.id}
                         type="button"
-                        onClick={() => handleTechnologyChange('backend', tech)}
+                        onClick={() => handleTechnologyChange('Backend', tech.name)}
                         className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                          formData.technologies_back?.includes(tech)
+                          formData.technologies_back?.includes(tech.name)
                             ? 'bg-green-100 text-green-800 hover:bg-green-200'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                         disabled={isSaving}
                       >
-                        {tech}
+                        {tech.name}
                       </button>
                     ))}
                   </div>
@@ -264,19 +313,19 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                     Technologies Frontend
                   </label>
                   <div className="flex flex-wrap gap-2">
-                    {availableTechnologies.frontend.map(tech => (
+                    {availableTechnologies.Frontend.map(tech => (
                       <button
-                        key={tech}
+                        key={tech.id}
                         type="button"
-                        onClick={() => handleTechnologyChange('frontend', tech)}
+                        onClick={() => handleTechnologyChange('Frontend', tech.name)}
                         className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                          formData.technologies_front?.includes(tech)
+                          formData.technologies_front?.includes(tech.name)
                             ? 'bg-blue-100 text-blue-800 hover:bg-blue-200'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                         disabled={isSaving}
                       >
-                        {tech}
+                        {tech.name}
                       </button>
                     ))}
                   </div>
@@ -289,19 +338,19 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                     Technologies Cloud & Data
                   </label>
                   <div className="flex flex-wrap gap-2">
-                    {availableTechnologies.cloud.map(tech => (
+                    {availableTechnologies.Cloud.map(tech => (
                       <button
-                        key={tech}
+                        key={tech.id}
                         type="button"
-                        onClick={() => handleTechnologyChange('cloud', tech)}
+                        onClick={() => handleTechnologyChange('Cloud', tech.name)}
                         className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                          formData.technologies_cloud?.includes(tech)
+                          formData.technologies_cloud?.includes(tech.name)
                             ? 'bg-purple-100 text-purple-800 hover:bg-purple-200'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                         disabled={isSaving}
                       >
-                        {tech}
+                        {tech.name}
                       </button>
                     ))}
                   </div>
@@ -311,7 +360,12 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
               <div className="flex justify-end gap-3 pt-4">
                 <button
                   type="button"
-                  onClick={() => setIsEditing(false)}
+                  onClick={() => {
+                    setIsEditing(false);
+                    if (!company) {
+                      onUpdate();
+                    }
+                  }}
                   className="px-6 py-3 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                   disabled={isSaving}
                 >

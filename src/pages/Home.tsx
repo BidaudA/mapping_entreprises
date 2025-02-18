@@ -45,6 +45,7 @@ export default function HomePage() {
             <Map
               companies={companies}
               selectedCompany={selectedCompany}
+              onSelectCompany={setSelectedCompany}
             />
           </div>
         </div>

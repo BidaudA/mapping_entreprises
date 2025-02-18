@@ -23,9 +23,14 @@ const selectedIcon = new Icon({
 interface MapProps {
   companies: Company[];
   selectedCompany: Company | null;
+  onSelectCompany: (company: Company) => void;
 }
 
-function MarkerWithPopup({ company, selectedCompany }: { company: Company, selectedCompany: Company | null }) {
+function MarkerWithPopup({ company, selectedCompany, onSelectCompany }: { 
+  company: Company; 
+  selectedCompany: Company | null;
+  onSelectCompany: (company: Company) => void;
+}) {
   const map = useMap();
   const markerRef = useRef<L.Marker>(null);
 
@@ -45,11 +50,16 @@ function MarkerWithPopup({ company, selectedCompany }: { company: Company, selec
       ref={markerRef}
       position={[company.location.lat, company.location.lng]}
       icon={company.id === selectedCompany?.id ? selectedIcon : defaultIcon}
+      eventHandlers={{
+        click: () => {
+          onSelectCompany(company);
+        }
+      }}
     >
-      <Popup offset={[0, -20]}>
+      <Popup offset={[0, -20]} closeButton={false}>
         <div className="p-2">
           <h3 className="font-bold">{company.name}</h3>
-          <p className="text-sm">{company.address}</p>
+          <p className="text-sm">{company.adress}</p>
           <p className="text-sm mt-2">{company.description}</p>
         </div>
       </Popup>
@@ -57,7 +67,7 @@ function MarkerWithPopup({ company, selectedCompany }: { company: Company, selec
   );
 }
 
-export default function Map({ companies, selectedCompany }: MapProps) {
+export default function Map({ companies, selectedCompany, onSelectCompany }: MapProps) {
   return (
     <MapContainer
       center={[44.837789, -0.579180]}
@@ -73,6 +83,7 @@ export default function Map({ companies, selectedCompany }: MapProps) {
           key={company.id} 
           company={company} 
           selectedCompany={selectedCompany}
+          onSelectCompany={onSelectCompany}
         />
       ))}
     </MapContainer>
