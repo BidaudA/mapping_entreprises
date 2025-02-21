@@ -34,8 +34,8 @@ export const technologiesApi = {
     return response.data;
   },
 
-  create: async (technology: string) => {
-    const response = await api.post<string>('/technologies', { technology });
+  create: async (technology: Technology) => {
+    const response = await api.post<Technology>('/technologies', { technology });
     return response.data;
   },
 

@@ -14,7 +14,7 @@ export interface Company {
 }
 
 export interface Technology {
-  id: string;
+  id: number;
   name: string;
   type: string;
 }

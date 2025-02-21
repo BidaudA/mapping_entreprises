@@ -3,10 +3,12 @@ import { useCompanies } from '../hooks/useCompanies';
 import AdminCompanyList from '../components/AdminCompanyList.tsx';
 import AdminMenu from '../components/AdminMenu.tsx';
 import { useState } from 'react';
+import TechnologyModal from '../components/TechnologyModal.tsx';
 
 export default function AdminPage() {
   const { companies, loading, error, refetch } = useCompanies();
   const [isAddingCompany, setIsAddingCompany] = useState(false);
+  const [isAddingTechnology, setIsAddingTechnology] = useState(false);
 
   if (error) {
     return (
@@ -52,6 +54,14 @@ export default function AdminPage() {
               await refetch();
               setIsAddingCompany(false);
             }}
+          />
+        )}
+
+        {/* Modal d'ajout de technologie */}
+        {isAddingTechnology && (
+          <TechnologyModal
+            onClose={() => setIsAddingTechnology(false)}
+            onUpdate={refetch}
           />
         )}
       </div>
