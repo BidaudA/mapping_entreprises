@@ -12,7 +12,7 @@ export default function TechnologyModal({ onClose, onUpdate }: TechnologyModalPr
   const [formData, setFormData] = useState({
     id: 0,
     name: '',
-    type: 'backend' as 'backend' | 'frontend' | 'cloud'
+    type: 'Backend' as 'Backend' | 'Frontend' | 'Cloud'
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,6 +20,7 @@ export default function TechnologyModal({ onClose, onUpdate }: TechnologyModalPr
     
     try {
       setIsSaving(true);
+      console.log(formData);
       await technologiesApi.create(formData);
       await onUpdate();
       onClose();
@@ -67,9 +68,9 @@ export default function TechnologyModal({ onClose, onUpdate }: TechnologyModalPr
             <div className="grid grid-cols-3 gap-3">
               <button
                 type="button"
-                onClick={() => setFormData(prev => ({ ...prev, type: 'backend' }))}
+                onClick={() => setFormData(prev => ({ ...prev, type: 'Backend' }))}
                 className={`flex items-center justify-center gap-2 p-3 rounded-lg transition-colors ${
-                  formData.type === 'backend'
+                  formData.type === 'Backend'
                     ? 'bg-green-100 text-green-800'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
@@ -79,9 +80,9 @@ export default function TechnologyModal({ onClose, onUpdate }: TechnologyModalPr
               </button>
               <button
                 type="button"
-                onClick={() => setFormData(prev => ({ ...prev, type: 'frontend' }))}
+                onClick={() => setFormData(prev => ({ ...prev, type: 'Frontend' }))}
                 className={`flex items-center justify-center gap-2 p-3 rounded-lg transition-colors ${
-                  formData.type === 'frontend'
+                  formData.type === 'Frontend'
                     ? 'bg-blue-100 text-blue-800'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
@@ -91,9 +92,9 @@ export default function TechnologyModal({ onClose, onUpdate }: TechnologyModalPr
               </button>
               <button
                 type="button"
-                onClick={() => setFormData(prev => ({ ...prev, type: 'cloud' }))}
+                onClick={() => setFormData(prev => ({ ...prev, type: 'Cloud' }))}
                 className={`flex items-center justify-center gap-2 p-3 rounded-lg transition-colors ${
-                  formData.type === 'cloud'
+                  formData.type === 'Cloud'
                     ? 'bg-purple-100 text-purple-800'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}

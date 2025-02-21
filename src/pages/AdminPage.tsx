@@ -1,4 +1,4 @@
-import { Plus, Loader2 } from 'lucide-react';
+import { Plus, Loader2, Code2 } from 'lucide-react';
 import { useCompanies } from '../hooks/useCompanies';
 import AdminCompanyList from '../components/AdminCompanyList.tsx';
 import AdminMenu from '../components/AdminMenu.tsx';
@@ -37,13 +37,23 @@ export default function AdminPage() {
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Administration des entreprises</h1>
-          <button
-            onClick={() => setIsAddingCompany(true)} // Sera géré par AdminCompanyList
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-5 h-5" />
-            Ajouter une entreprise
-          </button>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setIsAddingTechnology(true)} // Sera géré par TechnologyModal
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Code2 className="w-5 h-5" />
+                Ajouter une technologie
+              </button>
+            
+            <button
+              onClick={() => setIsAddingCompany(true)} // Sera géré par AdminCompanyList
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="w-5 h-5" />
+              Ajouter une entreprise
+            </button>
+          </div>
         </div>
         <AdminCompanyList companies={companies} onRefresh={refetch}/>
         {/* Modal d'ajout d'entreprise */}
@@ -56,7 +66,7 @@ export default function AdminPage() {
             }}
           />
         )}
-
+        
         {/* Modal d'ajout de technologie */}
         {isAddingTechnology && (
           <TechnologyModal
