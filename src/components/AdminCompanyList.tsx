@@ -12,19 +12,22 @@ export default function AdminCompanyList({ companies, onRefresh }: AdminCompanyL
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Entreprise
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Domaine
+            </th>
+            <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Adresse
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Technologies
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Types de postes
             </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="w-1/6 px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
               Actions
             </th>
           </tr>
@@ -32,14 +35,17 @@ export default function AdminCompanyList({ companies, onRefresh }: AdminCompanyL
         <tbody className="bg-white divide-y divide-gray-200">
           {companies.map((company) => (
             <tr key={company.id} className="hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-4 py-2 whitespace-nowrap">
                 <div className="text-sm font-medium text-gray-900">{company.name}</div>
                 <div className="text-sm text-gray-500">{company.description}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-4 py-2 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{company.domain}</div>
+              </td>
+              <td className="px-4 py-2 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{company.adress}</div>
               </td>
-              <td className="px-6 py-4">
+              <td className="px-4 py-2">
                 <div className="flex flex-wrap gap-1">
                   {[...company.technologies_back, ...company.technologies_front, ...company.technologies_cloud]
                     .slice(0, 3)
@@ -58,7 +64,7 @@ export default function AdminCompanyList({ companies, onRefresh }: AdminCompanyL
                   )}
                 </div>
               </td>
-              <td className="px-6 py-4">
+              <td className="px-4 py-2">
                 <div className="flex flex-wrap gap-1">
                   {company.types_postes.slice(0, 2).map((type) => (
                     <span
@@ -75,7 +81,7 @@ export default function AdminCompanyList({ companies, onRefresh }: AdminCompanyL
                   )}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
                 <AdminMenu company={company} onUpdate={onRefresh}/>
               </td>
             </tr>

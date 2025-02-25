@@ -34,7 +34,8 @@ export function useCompanies() {
             lat: parseFloat(row.latitude) || 0,
             lng: parseFloat(row.longitude) || 0
           },
-            adress: row.adress || ''
+            adress: row.adress || '',
+            domain: row.domain || '',
           }));
       setCompanies(parsedCompanies);
       setError(null);

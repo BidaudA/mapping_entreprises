@@ -262,7 +262,7 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                   value={formData.domain || ''}
                   onChange={(e) => setFormData(prev => ({ ...prev, domain: e.target.value }))}
                   className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300"
-                  placeholder="Adresse complète"
+                  placeholder="Domaine (IT/Industrie)"
                   disabled={isSaving}
                 />
               </div>
