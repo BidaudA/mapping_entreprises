@@ -90,7 +90,8 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
         longitude: formData.location?.lng,
         technologies_back: formData.technologies_back || [],
         technologies_front: formData.technologies_front || [],
-        technologies_cloud: formData.technologies_cloud || []
+        technologies_cloud: formData.technologies_cloud || [],
+        domain : formData.domain
         
       };
 
@@ -145,6 +146,7 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
         technologies_cloud: company.technologies_cloud.map(tech => 
           typeof tech === 'string' ? tech : ''
         ),
+        domain: company.domain
       });
     } else {
       setFormData({
@@ -154,7 +156,8 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
         location: { lat: 44.837789, lng: -0.579180 }, // Coordonnées par défaut pour Bordeaux
         technologies_back: [],
         technologies_front: [],
-        technologies_cloud: []
+        technologies_cloud: [],
+        domain: ''
       });
     }
   }, [company]);
@@ -244,6 +247,20 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                   type="text"
                   value={formData.adress || ''}
                   onChange={(e) => setFormData(prev => ({ ...prev, adress: e.target.value }))}
+                  className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300"
+                  placeholder="Adresse complète"
+                  disabled={isSaving}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 text-left">
+                  Domaine
+                </label>
+                <input
+                  type="text"
+                  value={formData.domain || ''}
+                  onChange={(e) => setFormData(prev => ({ ...prev, domain: e.target.value }))}
                   className="w-full px-4 py-3 text-gray-700 bg-gray-50 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 ease-in-out hover:border-blue-300"
                   placeholder="Adresse complète"
                   disabled={isSaving}

@@ -11,6 +11,7 @@ export interface Company {
     lng: number;
   };
   adress: string;
+  domain: string;
 }
 
 export interface Technology {
