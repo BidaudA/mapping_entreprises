@@ -373,7 +373,6 @@ export default function AdminMenu({ company, onUpdate }: AdminMenuProps) {
                   </div>
                 </div>
               </div>
-
               <div className="flex justify-end gap-3 pt-4">
                 <button
                   type="button"

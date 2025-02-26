@@ -121,26 +121,8 @@ export default function CompanyList({ companies, onSelectCompany }: CompanyListP
           >
             <h3 className="font-bold text-lg">{company.name}</h3>
             <p className="text-gray-600 text-sm mb-2">{company.description}</p>
-            <p className="text-gray-500 text-sm mb-3">{company.adress}</p>
+            <p className="text-gray-500 text-sm mb-3">{company.adress}</p>           
             
-            {company.types_postes.length > 0 && (
-              <div className="mb-3">
-                <div className="flex items-center gap-2 mb-1">
-                  <Briefcase className="w-4 h-4 text-gray-500" />
-                  <span className="text-sm font-medium">Types de postes:</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {company.types_postes.map((poste) => (
-                    <span
-                      key={poste}
-                      className="px-2 py-1 bg-amber-100 text-amber-800 text-xs rounded-full"
-                    >
-                      {poste}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
             
             {company.technologies_back.length > 0 && (
               <div className="mb-2">
