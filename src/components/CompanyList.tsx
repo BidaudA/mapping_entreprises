@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Company } from '../types';
-import { Building2, Code2, Cloud, Database, Briefcase, SlidersHorizontal } from 'lucide-react';
+import { Building2, Code2, Cloud, Database, SlidersHorizontal } from 'lucide-react';
 
 interface CompanyListProps {
   companies: Company[];
@@ -110,7 +110,6 @@ export default function CompanyList({ companies, onSelectCompany }: CompanyListP
           </div>
         </div>
       </div>
-
       {/* Liste des entreprises */}
       <div className="space-y-4">
         {filteredCompanies.map((company) => (
@@ -121,9 +120,7 @@ export default function CompanyList({ companies, onSelectCompany }: CompanyListP
           >
             <h3 className="font-bold text-lg">{company.name}</h3>
             <p className="text-gray-600 text-sm mb-2">{company.description}</p>
-            <p className="text-gray-500 text-sm mb-3">{company.adress}</p>           
-            
-            
+            <p className="text-gray-500 text-sm mb-3">{company.adress}</p>
             {company.technologies_back.length > 0 && (
               <div className="mb-2">
                 <div className="flex items-center gap-2 mb-1">
@@ -142,7 +139,6 @@ export default function CompanyList({ companies, onSelectCompany }: CompanyListP
                 </div>
               </div>
             )}
-
             {company.technologies_front.length > 0 && (
               <div className="mb-2">
                 <div className="flex items-center gap-2 mb-1">
@@ -161,7 +157,6 @@ export default function CompanyList({ companies, onSelectCompany }: CompanyListP
                 </div>
               </div>
             )}
-
             {company.technologies_cloud.length > 0 && (
               <div className="mb-2">
                 <div className="flex items-center gap-2 mb-1">
