@@ -78,8 +78,8 @@
 
 1. Cloner le dépôt
 ```bash
-git clone https://github.com/votre-utilisateur/bordeaux-tech-companies.git
-cd bordeaux-tech-companies
+git clone https://github.com/BidaudA/mapping_entreprises.git
+cd mapping_entreprises
 ```
 
 2. Installer les dépendances
@@ -92,20 +92,9 @@ Créez un fichier `.env` à la racine du projet avec les variables suivantes:
 ```
 VITE_API_URL=http://localhost:3000/api
 ```
-
-Pour le backend, créez un fichier `.env` dans le dossier `backend`:
-```
-PORT=3000
-DATABASE_URL=postgresql://user:password@localhost:5432/bordeaux_tech_companies
-```
-
 4. Démarrer l'application en mode développement
 ```bash
 # Frontend
-npm run dev
-
-# Backend (dans un autre terminal)
-cd backend
 npm run dev
 ```
 
@@ -126,11 +115,3 @@ npm run dev
 - Modifiez les entreprises existantes
 - Ajoutez de nouvelles technologies
 - Supprimez des entreprises
-
-## 👥 Contribution
-
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request.
-
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
